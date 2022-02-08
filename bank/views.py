@@ -21,3 +21,7 @@ class AccountList(generics.ListCreateAPIView):
 class AccountDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Accounts.objects.all()
     serializer_class = AccountSerializer    
+
+class DepositList(generics.ListCreateAPIView):
+    queryset = Deposit.objects.all()
+    serializer_class = DepositSerializer 

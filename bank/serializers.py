@@ -20,19 +20,20 @@ class AccountSerializer(serializers.ModelSerializer):
 
 
 class DepositSerializer(serializers.ModelSerializer):
+    account = serializers.PrimaryKeyRelatedField(many=False, read_only=True, source='account.owner.username')
     class Meta:
-        mode = Deposit
+        model = Deposit
         fields = ['id', 'amount', 'account', 'transaction_date']
 
 
 class WithdrawSerializer(serializers.ModelSerializer):
     class Meta:
-        mode = Withdraw
+        model = Withdraw
         fields = ['id', 'amount', 'account', 'transaction_date']
 
 
 class TransferSerializer(serializers.ModelSerializer):
     class Meta:
-        mode = Transfer
+        model = Transfer
         fields = ['id', 'amount', 'account', 'transaction_date']
 
