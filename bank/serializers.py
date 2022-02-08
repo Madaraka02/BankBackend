@@ -17,3 +17,22 @@ class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Accounts
         fields = ['id', 'owner', 'bank', 'acc_balance', 'date_created'] 
+
+
+class DepositSerializer(serializers.ModelSerializer):
+    class Meta:
+        mode = Deposit
+        fields = ['id', 'amount', 'account', 'transaction_date']
+
+
+class WithdrawSerializer(serializers.ModelSerializer):
+    class Meta:
+        mode = Withdraw
+        fields = ['id', 'amount', 'account', 'transaction_date']
+
+
+class TransferSerializer(serializers.ModelSerializer):
+    class Meta:
+        mode = Transfer
+        fields = ['id', 'amount', 'account', 'transaction_date']
+

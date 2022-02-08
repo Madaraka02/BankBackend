@@ -21,14 +21,14 @@ class Accounts(models.Model):
 class Deposit(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     account = models.ForeignKey(Accounts, on_delete=models.CASCADE, blank=False, null=False)
-    date = models.DateTimeField(auto_now_add = True)        
+    transaction_date = models.DateTimeField(auto_now_add = True)        
 
 class Withdraw(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     account = models.ForeignKey(Accounts, on_delete=models.CASCADE, blank=False, null=False)
-    date = models.DateTimeField(auto_now_add = True)   
+    transaction_date = models.DateTimeField(auto_now_add = True)   
 
 class Transfer(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     account = models.ForeignKey(Accounts, on_delete=models.CASCADE, blank=False, null=False)
-    date = models.DateTimeField(auto_now_add = True)   
+    transaction_date = models.DateTimeField(auto_now_add = True)   
