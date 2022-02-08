@@ -27,12 +27,14 @@ class DepositSerializer(serializers.ModelSerializer):
 
 
 class WithdrawSerializer(serializers.ModelSerializer):
+    account = serializers.PrimaryKeyRelatedField(many=False, read_only=True, source='account.owner.username')
     class Meta:
         model = Withdraw
         fields = ['id', 'amount', 'account', 'transaction_date']
 
 
 class TransferSerializer(serializers.ModelSerializer):
+    account = serializers.PrimaryKeyRelatedField(many=False, read_only=True, source='account.owner.username')
     class Meta:
         model = Transfer
         fields = ['id', 'amount', 'account', 'transaction_date']
