@@ -12,6 +12,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class AccountSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')       
+    bank = serializers.ReadOnlyField(source='bank.name')  
 
     class Meta:
         model = Accounts
