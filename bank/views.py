@@ -45,3 +45,11 @@ class WithdrawList(generics.ListCreateAPIView):
 class WithdrawDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Withdraw.objects.all()
     serializer_class = WithdrawSerializer  
+
+class TransferList(generics.ListCreateAPIView):
+    queryset = Transfer.objects.all()
+    serializer_class = TransferSerializer
+
+class TransferDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Transfer.objects.all()
+    serializer_class = TransferSerializer      
