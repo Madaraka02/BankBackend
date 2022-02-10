@@ -18,17 +18,48 @@ class Accounts(models.Model):
     def __str__(self):
         return self.owner.username
 
+    # @property
+    # def transfer(self, transfer_amount):
+    #     balance = self.acc_balance - transfer_amount
+        
+    #     return balance 
+
+    # @property
+    # def withdraw(self, withdraw_amount):
+    #     balance = self.acc_balance - withdraw_amount
+    #     return balance 
+
+    # @property
+    # def deposit(self, deposit_amount):
+    #     balance = self.acc_balance - deposit_amount
+    #     return balance 
+
 class Deposit(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     account = models.ForeignKey(Accounts, on_delete=models.CASCADE, blank=False, null=False)
-    transaction_date = models.DateTimeField(auto_now_add = True)        
+    transaction_date = models.DateTimeField(auto_now_add = True)
+
+    @property
+    def balance(self):
+        balance = self.account.acc_balance + self.amount
+        return balance        
 
 class Withdraw(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     account = models.ForeignKey(Accounts, on_delete=models.CASCADE, blank=False, null=False)
     transaction_date = models.DateTimeField(auto_now_add = True)   
 
+    @property
+    def balance(self):
+        balance = self.account.acc_balance - self.amount
+        return balance
+
 class Transfer(models.Model):
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     account = models.ForeignKey(Accounts, on_delete=models.CASCADE, blank=False, null=False)
     transaction_date = models.DateTimeField(auto_now_add = True)   
+
+    @property
+    def balance(self):
+        balance = self.account.acc_balance - self.amount
+        return balance

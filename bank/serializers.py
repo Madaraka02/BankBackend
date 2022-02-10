@@ -13,6 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
 class AccountSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')       
     bank = serializers.ReadOnlyField(source='bank.name')  
+    
 
     class Meta:
         model = Accounts
@@ -21,21 +22,24 @@ class AccountSerializer(serializers.ModelSerializer):
 
 class DepositSerializer(serializers.ModelSerializer):
     account = serializers.PrimaryKeyRelatedField(many=False, read_only=True, source='account.owner.username')
+    balance = serializers.ReadOnlyField ()
     class Meta:
         model = Deposit
-        fields = ['id', 'amount', 'account', 'transaction_date']
+        fields = ['id', 'amount', 'account', 'transaction_date', 'balance']
 
 
 class WithdrawSerializer(serializers.ModelSerializer):
     account = serializers.PrimaryKeyRelatedField(many=False, read_only=True, source='account.owner.username')
+    balance = serializers.ReadOnlyField ()
     class Meta:
         model = Withdraw
-        fields = ['id', 'amount', 'account', 'transaction_date']
+        fields = ['id', 'amount', 'account', 'transaction_date', 'balance']
 
 
 class TransferSerializer(serializers.ModelSerializer):
     account = serializers.PrimaryKeyRelatedField(many=False, read_only=True, source='account.owner.username')
+    balance = serializers.ReadOnlyField ()
     class Meta:
         model = Transfer
-        fields = ['id', 'amount', 'account', 'transaction_date']
+        fields = ['id', 'amount', 'account', 'transaction_date', 'balance']
 
