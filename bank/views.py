@@ -38,16 +38,10 @@ class DepositDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Deposit.objects.all()
     serializer_class = DepositSerializer   
 
-@api_view(['GET', 'POST'])
-def deposit(request):
-    serializer = DepositSerializer(data=request.data)
+class WithdrawList(generics.ListCreateAPIView):
+    queryset = Withdraw.objects.all()
+    serializer_class = WithdrawSerializer 
 
-    data = serializer.validated_data
-    amount = data["amount"]
-
-    balance = data.account.acc_balance - amount
-
-    if serializer.is_valid():
-        serializer.save()
-
-    return Response({'balance': balance})   
+class WithdrawDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Withdraw.objects.all()
+    serializer_class = WithdrawSerializer  
